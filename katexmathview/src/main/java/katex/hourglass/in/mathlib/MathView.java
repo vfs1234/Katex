@@ -22,12 +22,14 @@ public class MathView extends WebView {
     private int text_color;
     private int text_size;
     private boolean clickable = false;
-    
-     
+    private boolean enable_zoom_in_controls = false;
+
+
+
 
     public MathView(Context context) {
         super(context);
-        configurationSettingWebView();
+        configurationSettingWebView(enable_zoom_in_controls);
         setDefaultTextColor(context);
         setDefaultTextSize();
     }
@@ -36,7 +38,7 @@ public class MathView extends WebView {
 
     public MathView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        configurationSettingWebView();
+        configurationSettingWebView(enable_zoom_in_controls);
         TypedArray mTypeArray = context.getTheme().obtainStyledAttributes(
                 attrs,
                 R.styleable.MathView,
@@ -77,13 +79,13 @@ public class MathView extends WebView {
 
 
     @SuppressLint({"SetJavaScriptEnabled", "NewApi"})
-    private void configurationSettingWebView()
+    private void configurationSettingWebView(boolean enable_zoom_in_controls)
     {
         getSettings().setJavaScriptEnabled(true);
         getSettings().setAllowFileAccess(true);
-        getSettings().setDisplayZoomControls(false);
-        getSettings().setBuiltInZoomControls(false);
-        getSettings().setSupportZoom(false);
+        getSettings().setDisplayZoomControls(enable_zoom_in_controls);
+        getSettings().setBuiltInZoomControls(enable_zoom_in_controls);
+        getSettings().setSupportZoom(enable_zoom_in_controls);
         getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
     }
 
@@ -177,21 +179,22 @@ public class MathView extends WebView {
     public void setClickable(boolean is_clickable)
     {
         this.clickable = is_clickable;
+        configurationSettingWebView(is_clickable);
         this.invalidate();
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(clickable)
+        if(this.clickable)
         {
             return false;
         }
         else
         {
             return true;
+
         }
 
     }
-
 
 }
