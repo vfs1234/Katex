@@ -116,13 +116,14 @@
   text-align: center;
 }
 .katex-display > .katex {
-  display: inline-block;
-  text-align: initial;
+    display: inline-block;
+    white-space: normal;
+    text-align: initial;
 }
 .katex {
   font: normal 1.21em KaTeX_Main, Times New Roman, serif;
-  line-height: 1.2;
-  white-space: nowrap;
+  line-height: 3.0;
+  white-space: normal;
   text-indent: 0;
 }
 .katex .katex-html {
@@ -131,7 +132,7 @@
 .katex .katex-mathml {
   position: absolute;
   clip: rect(1px, 1px, 1px, 1px);
-  padding: 0;
+  padding: 5px;
   border: 0;
   height: 1px;
   width: 1px;

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 /**
@@ -79,6 +80,7 @@ public class MathView extends WebView {
     @SuppressLint({"SetJavaScriptEnabled", "NewApi"})
     private void configurationSettingWebView()
     {
+//        this.setWebViewClient(new WebViewClient());
         getSettings().setJavaScriptEnabled(true);
         getSettings().setAllowFileAccess(true);
         getSettings().setDisplayZoomControls(false);
@@ -100,18 +102,20 @@ public class MathView extends WebView {
                 "<html>\n" +
                 "    <head>\n" +
                 "        <meta charset=\"UTF-8\">\n" +
+                "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
                 "        <title>Auto-render test</title>\n" +
-                "        <link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/katex/katex.min.css\">\n" +
-                "        <link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/themes/style.css\">\n" +
+                "        <link rel=\"stylesheet\" type=\"text/css\" href=\"file:///android_asset/katex/katex.css\">\n" +
                 "        <script type=\"text/javascript\" src=\"file:///android_asset/katex/katex.min.js\"></script>\n" +
                 "        <script type=\"text/javascript\" src=\"file:///android_asset/katex/contrib/auto-render.min.js\"></script>\n" +
                 " <style type='text/css'>"+
+                "img{max-width:100% !important;}\n"+
                 "body {"+
                 "margin: 0px;"+
                 "padding: 0px;"+
                 "font-size:" +this.text_size+"px;"+
                 "color:"+getHexColor(this.text_color)+";"+
                 " }"+
+
                 " </style>"+
                 "    </head>\n" +
                 "    <body>\n" +
